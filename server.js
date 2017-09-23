@@ -24,7 +24,6 @@ restService.post('/', function(req, res) {
         "serialNum" : serialNum,
         "assetId" : assetId
     });
-    }
 });
 
 restService.listen((process.env.PORT || 9000), function() {
