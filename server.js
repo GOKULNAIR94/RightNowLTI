@@ -20,6 +20,11 @@ restService.post('/', function(req, res) {
 
     console.log( "serialNum : " + serialNum );
     console.log( "assetId : " + assetId );
+    res.json({
+        "serialNum" : serialNum,
+        "assetId" : assetId
+    });
+    }
 });
 
 restService.listen((process.env.PORT || 9000), function() {
