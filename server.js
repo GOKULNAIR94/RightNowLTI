@@ -15,8 +15,8 @@ var serialNum = "";
 var assetId = "";
 
 restService.post('/', function(req, res) {
-    serialNum = request.query.serialnum;
-    assetId = request.query.assetid;
+    serialNum = req.query.serialnum;
+    assetId = req.query.assetid;
 
     console.log( "serialNum : " + serialNum );
     console.log( "assetId : " + assetId );
