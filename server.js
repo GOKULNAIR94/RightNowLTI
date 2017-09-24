@@ -13,6 +13,7 @@ restService.use(bodyParser.json());
 
 
 var Query = require("./query");
+var CloseInc = require("./closeinc");
 
 var qString = "";
 var Serial_Number = "";
@@ -21,6 +22,7 @@ var queryField = "", queryValue="";
 var combObj = {};
 
 restService.post('/closeincidents', function(req, res) {
+    
     console.log( "closeincidents" );
     Serial_Number = req.query.serialnum;
     PumpAssetId = req.query.assetid;
@@ -43,14 +45,53 @@ restService.post('/closeincidents', function(req, res) {
             queryValue = req.query.serialnum;
             console.log( "Serial_Number : " + Serial_Number );
         }
-        qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'";
         
+        qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'";
+
         Query( qString, req, res, function( result ){
             res.json( result );
         });
-
         
+
+
     }
+    CloseInc( id, req, res, function( result ){
+        //Close inc was called and retur nvalue = result
+    });
+    
+    
+    
+    
+                                            console.log( "closeincidents" );
+                                            Serial_Number = req.query.serialnum;
+                                            PumpAssetId = req.query.assetid;
+
+                                            if( (Serial_Number == null || Serial_Number == "") && (PumpAssetId == null || PumpAssetId == "") ) {
+                                                res.json({
+                                                    statusCode : 404,
+                                                    statusText : "Bad Request",
+                                                    message : "Required: Serial Number or Asset Id"
+                                                });
+                                            }
+                                            else{
+                                                if( (Serial_Number == null && Serial_Number == "")  ) {
+                                                    queryField = "PumpAssetId";
+                                                    queryValue = req.query.assetid;
+                                                    console.log( "PumpAssetId : " + PumpAssetId );
+                                                }
+                                                else{
+                                                    queryField = "Serial_Number";
+                                                    queryValue = req.query.serialnum;
+                                                    console.log( "Serial_Number : " + Serial_Number );
+                                                }
+                                                qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'";
+
+                                                Query( qString, req, res, function( result ){
+                                                    res.json( result );
+                                                });
+
+
+                                            }
     
 });
 
