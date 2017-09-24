@@ -1,4 +1,4 @@
-module.exports = function ( qString, req, res, callback){ 
+module.exports = function ( qString, req, resp, callback){ 
     var http = require("https");
 
     var options = {
@@ -34,13 +34,13 @@ module.exports = function ( qString, req, res, callback){
           callback( resObj );
           }
           catch(e){
-              res.json({
+              resp.json({
                 message : "Error: " + e 
             });
           }
       });
     res.on("error", function ( e ) {
-        res.json({
+        resp.json({
                 message : "Error: " + e 
             });
       });
