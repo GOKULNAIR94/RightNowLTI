@@ -52,7 +52,7 @@ module.exports = function ( arrIds, req, res, callback){
       });
     });
 
-    req.write( "{ 'assignedTo.staffGroup.lookupName' : 'Admin' } "  //GB Staffs
+    req.write( "{ 'assignedTo.staffGroup.lookupName' : 'Admin' } ");  //GB Staffs
 
     //req.write( "{ 'statusWithType.status.lookupName' : 'Solved' }");
     req.end();
