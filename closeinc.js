@@ -1,6 +1,7 @@
-module.exports = function ( id, req, res, callback){ 
+module.exports = function ( arrIds, req, res, callback){ 
     var http = require("https");
-
+    var CloseInc = require("./closeinc");
+    
     var options = {
       "method": "POST",
       "hostname": "ntinfotech--tst.custhelp.com",
@@ -14,17 +15,35 @@ module.exports = function ( id, req, res, callback){
       }
     };
 
-    var req = http.request(options, function (res) {
+    var req = http.request(options, function (resp) {
       var responseString = '',
             resObj;
-      res.on("data", function ( data ) {
+      resp.on("data", function ( data ) {
         responseString += data;
       });
 
-      res.on("end", function () {
-          console.log( "responseString : " + responseString );
+      resp.on("end", function () {
+          //console.log( "responseString : " + responseString );
           resObj = JSON.parse(responseString);
-          console.log( "resObj : " + JSON.stringify(resObj));
+          //console.log( "resObj : " + JSON.stringify(resObj));
+          
+            console.log( "status COde : " + resp.statusCode);
+            console.log("Status : " + resp.status);
+            console.log("varStatus : " + resp.statusText);
+          
+          if( arrIds.length == 0 ){
+              res.json({
+                    statusCode : 200,
+                    statusText : "Success",
+                    message : "Update Successful"
+                });
+          }
+          else{
+              arrIds.remove(0);
+              CloseInc( arrIds, req, res, function( result ){
+                  console.log("Closed");
+              });
+          }
           callback( resObj );
       });
     });
