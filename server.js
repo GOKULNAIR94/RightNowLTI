@@ -114,13 +114,13 @@ restService.post('/getincidents', function(req, res) {
             queryValue = req.query.serialnum;
             console.log( "Serial_Number : " + Serial_Number );
         }
-        
+        combObj = {};
         qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'&orderBy=createdTime:desc";
         Query( qString, req, res, function( result ){
             //res.json( result );
             if( result.items.length > 0 ){
                 qString = result.items[0].id;
-                combObj = {};
+                
                 Query( qString, req, res, function( result ){
                     combObj["Unresolved"] = result;
                     
