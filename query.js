@@ -17,7 +17,7 @@ module.exports = function ( qString, req, res, callback){
       var responseString = '',
             resObj;
 
-      res.on("data", function (chunk) {
+      res.on("data", function ( data ) {
         responseString += data;
       });
 
