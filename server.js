@@ -51,11 +51,21 @@ restService.post('/closeincidents', function(req, res) {
         Query( qString, req, res, function( result ){
             //res.json( result );
             var arrIds = result.items;
-            
+            var last = 0;
             if( arrIds.length > 0 ){
-                CloseInc( arrIds, req, res, function( result ){
-                    console.log("Close Incidents");
-                });
+                for( var i=0; i < arrIds.length; i++){
+                    if( i == arrIds.length -1)
+                        last = 1;
+                    
+                    CloseInc( arrIds[i], last, req, res, function( result ){
+                        console.log("Close Incidents");
+                    });
+                    
+                        
+                }
+//                CloseInc( arrIds, req, res, function( result ){
+//                    console.log("Close Incidents");
+//                });
             }
             else{
                 res.json({
