@@ -3,13 +3,13 @@ module.exports = function ( arrIds, req, res, callback){
     var CloseInc = require("./closeinc");
     
     var options = {
-      "method": "PATCH",
+      "method": "POST",
       "hostname": "ntinfotech--tst.custhelp.com",
       "port": null,
       "path": "/services/rest/connect/latest/incidents/" + arrIds[0].id,
       "headers": {
         "authorization": "Basic cHBhdGthcjpsbnRMTlQxMjM0",
-        //"x-http-method-override": "PATCH",
+        "x-http-method-override": "PATCH",
         "cache-control": "no-cache",
         "postman-token": "453a1486-b373-bf0b-4667-485bb7678b6d"
       }
@@ -47,13 +47,12 @@ module.exports = function ( arrIds, req, res, callback){
                   CloseInc( arrIds, req, res, function( result ){
                       console.log("Closed");
                   });
-                  
               }
           }
       });
     });
 
-    req.write( "{ 'assignedTo.staffGroup.lookupName' : 'GB Staffs' } ");  //GB Staffs
+    req.write( "{ 'assignedTo.staffGroup.id' : '100107' } " );
 
     //req.write( "{ 'statusWithType.status.lookupName' : 'Solved' }");
     req.end();
