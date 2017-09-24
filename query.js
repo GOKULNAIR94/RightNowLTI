@@ -5,7 +5,7 @@ module.exports = function ( qString, req, res, callback){
       "method": "GET",
       "hostname": "ntinfotech--tst.custhelp.com",
       "port": null,
-      "path": "/services/rest/connect/latest/incidents?q=" + qString, //customFields.CO.Serial_Number%3D'C355'%20AND%20statusWithType.status.lookupName%3D'Solved'
+      "path": "/services/rest/connect/latest/incidents/" + qString, //customFields.CO.Serial_Number%3D'C355'%20AND%20statusWithType.status.lookupName%3D'Solved'
       "headers": {
         "authorization": "Basic cHBhdGthcjpsbnRMTlQxMjM0",
         "cache-control": "no-cache",
@@ -26,8 +26,8 @@ module.exports = function ( qString, req, res, callback){
           resObj = JSON.parse(responseString);
           var rowCount = resObj.count;
           console.log( "rowCount : " + rowCount);
-          console.log( "resObj : " + JSON.stringify(resObj.items));
-          callback( resObj.items );
+          console.log( "resObj : " + JSON.stringify(resObj));
+          callback( resObj );
       });
     });
 
