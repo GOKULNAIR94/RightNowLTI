@@ -50,6 +50,9 @@ module.exports = function ( arrIds, req, res, callback){
               }
           }
       });
+        resp.on("error", function ( error ) {
+            console.log("Error : " + error);
+      });
     });
 
     req.write( "{ 'assignedTo.staffGroup.id' : '100107' } " );
