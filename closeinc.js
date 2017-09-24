@@ -6,16 +6,16 @@ module.exports = function ( arrIds, req, res, callback){
     var output;
     var varAuth = 'Basic cHBhdGthcjpsbnRMTlQxMjM0';
 
-    var options = {
-        method: 'PATCH',
-        url: 'https://ntinfotech--tst.custhelp.com/services/rest/connect/latest/incidents/' + arrIds[0].id,
-        headers: {
-            'postman-token': '2e164913-425e-4d15-e09a-5d479d31c1d5',
-            'cache-control': 'no-cache',
-            authorization: varAuth
-        },
-        body: "{\n\"assignedTo\": {\n        \"account\": null,\n        \"staffGroup\": {\n            \"lookupName\": \"GB Staffs\"\n        }\n    }\n }"
-    };
+    var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://ntinfotech--tst.custhelp.com/services/rest/connect/latest/incidents/125',
+  headers: 
+   { 'postman-token': '9db60d9f-9762-94fa-5a51-e36d77d114d1',
+     'cache-control': 'no-cache',
+     'x-http-method-override': 'PATCH',
+     authorization: 'Basic cHBhdGthcjpsbnRMTlQxMjM0' },
+  body: '{\n"assignedTo": {\n        "account": null,\n        "staffGroup": {\n            "lookupName": "GB Staffs"\n        }\n    }\n }' };
 
     request(options, function(error, response, body) {
         if (error) throw new Error(error);
