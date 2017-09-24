@@ -49,7 +49,7 @@ restService.post('/closeincidents', function(req, res) {
         qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'";
 
         Query( qString, req, res, function( result ){
-            res.json( result );
+            //res.json( result );
             var arrIds = result.items;
             
             CloseInc( arrIds, req, res, function( result ){
