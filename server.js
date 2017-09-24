@@ -57,7 +57,7 @@ restService.post('/closeincidents', function(req, res) {
                     if( i == arrIds.length -1)
                         last = 1;
                     
-                    CloseInc( arrIds[i], last, req, res, function( result ){
+                    CloseInc( arrIds[i].id, last, req, res, function( result ){
                         console.log("Close Incidents");
                     });
                     
