@@ -15,7 +15,7 @@ var options = { method: 'POST',
      'cache-control': 'no-cache',
      'x-http-method-override': 'PATCH',
      authorization: 'Basic cHBhdGthcjpsbnRMTlQxMjM0' },
-  body: '{\n"assignedTo": {\n        "account": null,\n        "staffGroup": {\n            "lookupName": "Admin"\n        }\n    }\n }' };
+  body: '{\n"assignedTo": {\n        "account": null,\n        "staffGroup": {\n            "lookupName": "GB Staffs"\n        }\n    }\n }' };
 
     request(options, function(error, response, body) {
         if (error) throw new Error(error);
