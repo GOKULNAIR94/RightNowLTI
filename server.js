@@ -69,8 +69,7 @@ restService.post('/closeincidents', function(req, res) {
             }
             else{
                 res.json({
-                    statusCode : 300,
-                    message : "No records!"
+                    message : "No records found!"
                 });
             }
             
