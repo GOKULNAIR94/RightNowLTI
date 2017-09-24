@@ -15,7 +15,7 @@ var options = { method: 'POST',
      'cache-control': 'no-cache',
      'x-http-method-override': 'PATCH',
      authorization: 'Basic cHBhdGthcjpsbnRMTlQxMjM0' },
-  body: '{\n"assignedTo": {\n        "account": null,\n        "staffGroup": {\n            "lookupName": "Admin"\n        }\n    }\n }' };
+  body: '{\n"assignedTo": {\n       "staffGroup": {\n            "lookupName": "GB Staffs"\n        }\n    }\n }' };
 
     request(options, function(error, response, body) {
         if (error) throw new Error(error);
@@ -44,30 +44,5 @@ var options = { method: 'POST',
                 message : "Internal Server Error!"
             });
         }
-            
-        
-        
-//        if( response.statusCode < 200 || response.statusCode >=300 ){
-//              res.json({
-//                    statusCode : response.statusCode,
-//                    message : "Failed"
-//                });
-//          }
-//          else{
-//              arrIds.splice(0,1);
-//              if( arrIds.length == 0 ){
-//                  res.json({
-//                        statusCode : 200,
-//                        message : "Successful"
-//                    });
-//              }
-//              else{
-//                  console.log( "arrIds : " + arrIds[0].id);  
-//                  CloseInc( arrIds, req, res, function( result ){
-//                      console.log("Closed");
-//                  });
-//              }
-//          }
     });
-    
 }
