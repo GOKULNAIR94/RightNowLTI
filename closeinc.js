@@ -49,8 +49,6 @@ module.exports = function ( arrIds, req, res, callback){
                   });
               }
           }
-          
-          callback( resObj );
       });
     });
 
