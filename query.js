@@ -22,7 +22,8 @@ module.exports = function ( qString, req, res, callback){
       });
 
       res.on("end", function () {
-          //console.log("Body : " + responseString);
+          try{
+              //console.log("Body : " + responseString);
           resObj = JSON.parse(responseString);
           if( resObj.items != null ){
               var rowCount = resObj.items.length;
@@ -31,6 +32,17 @@ module.exports = function ( qString, req, res, callback){
           }
           //console.log( "resObj : " + JSON.stringify(resObj));
           callback( resObj );
+          }
+          catch(e){
+              res.json({
+                message : "Error: " + e 
+            });
+          }
+      });
+    res.on("error", function ( e ) {
+        res.json({
+                message : "Error: " + e 
+            });
       });
     });
 

@@ -18,7 +18,11 @@ var options = { method: 'POST',
   body: '{\n"statusWithType": {\n       "status": {\n            "lookupName": "Solved"\n        }\n    }\n }' };
 
     request(options, function(error, response, body) {
-        if (error) throw new Error(error);
+        if (error){
+            res.json({
+                message : "Error: " + error
+            });
+        } //throw new Error(error);
 
         console.log( "status COde : " + response.statusCode);
         

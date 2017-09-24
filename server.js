@@ -23,7 +23,8 @@ var combObj = {};
 
 restService.post('/closeincidents', function(req, res) {
     
-    console.log( "closeincidents" );
+    try{
+        console.log( "closeincidents" );
     Serial_Number = req.query.serialnum;
     PumpAssetId = req.query.assetid;
     
@@ -76,6 +77,12 @@ restService.post('/closeincidents', function(req, res) {
         });
         
     }
+    }
+    catch( e ){
+        res.json({
+            message : "Error: " + e 
+        });
+    }
     
 });
 
@@ -85,6 +92,7 @@ restService.post('/closeincidents', function(req, res) {
 restService.post('/getincidents', function(req, res) {
     console.log( "getincidents" );
     
+    try{
     Serial_Number = req.query.serialnum;
     PumpAssetId = req.query.assetid;
     
@@ -126,6 +134,12 @@ restService.post('/getincidents', function(req, res) {
         });
 
         
+    }
+    }
+    catch( e ){
+        res.json({
+            message : "Error: " + e 
+        });
     }
     
 });
