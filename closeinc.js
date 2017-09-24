@@ -55,7 +55,7 @@ module.exports = function ( arrIds, req, res, callback){
       });
     });
 
-    req.write( "{ 'assignedTo.staffGroup.id' : '100107' }" );
+    req.write( '"assignedTo": {"account": null,"staffGroup": {"lookupName": "GB Staffs"}}' );
 
     //req.write( "{ 'statusWithType.status.lookupName' : 'Solved' }");
     req.end();
