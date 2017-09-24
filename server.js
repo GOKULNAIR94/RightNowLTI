@@ -129,11 +129,15 @@ restService.post('/getincidents', function(req, res) {
                             qString = result.items[0].id;
                             Query( qString, req, res, function( result ){
                                 combObj["Solved"] = result;
+                                console.log( "combObj : " + JSON.stringify(combObj));
                                 res.json( combObj );
                             });
                         }
-                        else
+                        else{
+                            console.log( "combObj : " + JSON.stringify(combObj) );
                             res.json( combObj );
+                        }
+                            
                     });
 
                 });
@@ -145,11 +149,14 @@ restService.post('/getincidents', function(req, res) {
                         qString = result.items[0].id;
                         Query( qString, req, res, function( result ){
                             combObj["Solved"] = result;
+                            console.log( "combObj : " + JSON.stringify(combObj) );
                             res.json( combObj );
                         });
                     }
-                    else
-                        res.json( combObj );
+                    else{
+                            console.log( "combObj : " + JSON.stringify(combObj) );
+                            res.json( combObj );
+                        }
                 });
                 
             }

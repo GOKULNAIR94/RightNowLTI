@@ -25,6 +25,7 @@ var options = { method: 'POST',
         } //throw new Error(error);
 
         console.log( "status COde : " + response.statusCode);
+        console.log( "id : " + id);
         
         try{
             if( response.statusCode < 200 || response.statusCode >=300 ){
