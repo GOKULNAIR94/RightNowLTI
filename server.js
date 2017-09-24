@@ -22,6 +22,12 @@ var queryField = "", queryValue="";
 var combObj = {};
 
 restService.post('/closeincidents', function(req, res) {
+    qString = "";
+    Serial_Number = "";
+    PumpAssetId = "";
+    queryField = "";
+    queryValue="";
+    combObj = {};
     
     try{
         console.log( "closeincidents" );
@@ -91,6 +97,12 @@ restService.post('/closeincidents', function(req, res) {
 
 restService.post('/getincidents', function(req, res) {
     console.log( "getincidents" );
+    qString = "";
+    Serial_Number = "";
+    PumpAssetId = "";
+    queryField = "";
+    queryValue="";
+    combObj = {};
     
     try{
     Serial_Number = req.query.serialnum;
@@ -114,7 +126,7 @@ restService.post('/getincidents', function(req, res) {
             queryValue = req.query.serialnum;
             console.log( "Serial_Number : " + Serial_Number );
         }
-        combObj = {};
+
         qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'&orderBy=createdTime:desc";
         Query( qString, req, res, function( result ){
             //res.json( result );
