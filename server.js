@@ -120,6 +120,7 @@ restService.post('/getincidents', function(req, res) {
             //res.json( result );
             if( result.items.length > 0 ){
                 qString = result.items[0].id;
+                combObj = {};
                 Query( qString, req, res, function( result ){
                     combObj["Unresolved"] = result;
                     
