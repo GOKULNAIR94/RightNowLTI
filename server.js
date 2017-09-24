@@ -11,9 +11,9 @@ restService.use(bodyParser.urlencoded({
 
 restService.use(bodyParser.json());
 
-var serialNum = "";
-var assetId = "";
-var queryField;
+var Serial_Number = "";
+var PumpAssetId = "";
+var queryField = "", queryValue="";
 
 restService.post('/', function(req, res) {
     
