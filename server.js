@@ -168,7 +168,9 @@ restService.post('/getincidents', function(req, res) {
                     }
                     else{
                             //console.log( "combObj 4: " + JSON.stringify(combObj) );
-                            res.json( combObj );
+                            res.json({
+                                message : "No records found!"
+                            });
                         }
                 });
                 
