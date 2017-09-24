@@ -55,7 +55,7 @@ module.exports = function ( arrIds, req, res, callback){
       });
     });
 
-    req.write( '"assignedTo": {"account": null,"staffGroup": {"lookupName": "GB Staffs"}}' );
+    req.write( "{\n\"assignedTo\": {\n        \"account\": null,\n        \"staffGroup\": {\n            \"lookupName\": \"Admin\"\n        }\n    }\n }");
 
     //req.write( "{ 'statusWithType.status.lookupName' : 'Solved' }");
     req.end();
