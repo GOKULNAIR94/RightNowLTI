@@ -36,7 +36,7 @@ var options = { method: 'POST',
                     });
               }
               else{
-                  arrIds.splice(0);
+                  arrIds.splice(0,1);
                   CloseInc( arrIds, req, res, function( result ){
                       console.log("Closed");
                   });
