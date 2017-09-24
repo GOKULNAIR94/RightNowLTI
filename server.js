@@ -20,6 +20,7 @@ var PumpAssetId = "";
 var queryField = "", queryValue="";
 
 restService.post('/closeincidents', function(req, res) {
+    console.log( "closeincidents" );
     Serial_Number = req.query.serialnum;
     PumpAssetId = req.query.assetid;
     
@@ -53,6 +54,7 @@ restService.post('/closeincidents', function(req, res) {
 });
 
 restService.post('/getincidents', function(req, res) {
+    console.log( "getincidents" );
     var combObj;
     Serial_Number = req.query.serialnum;
     PumpAssetId = req.query.assetid;
