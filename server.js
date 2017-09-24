@@ -47,7 +47,7 @@ restService.post('/closeincidents', function(req, res) {
             console.log( "Serial_Number : " + Serial_Number );
         }
         
-        qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'";
+        qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Solved'";
 
         Query( qString, req, res, function( result ){
             //res.json( result );
