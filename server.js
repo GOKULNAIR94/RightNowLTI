@@ -142,12 +142,12 @@ restService.post('/getincidents', function(req, res) {
                             qString = result.items[0].id;
                             Query( qString, req, res, function( result ){
                                 combObj["Solved"] = result;
-                                console.log( "combObj 1: " + JSON.stringify(combObj));
+                                //console.log( "combObj 1: " + JSON.stringify(combObj));
                                 res.json( combObj );
                             });
                         }
                         else{
-                            console.log( "combObj 2: " + JSON.stringify(combObj) );
+                            //console.log( "combObj 2: " + JSON.stringify(combObj) );
                             res.json( combObj );
                         }
                             
@@ -162,12 +162,12 @@ restService.post('/getincidents', function(req, res) {
                         qString = result.items[0].id;
                         Query( qString, req, res, function( result ){
                             combObj["Solved"] = result;
-                            console.log( "combObj 3: " + JSON.stringify(combObj) );
+                            //console.log( "combObj 3: " + JSON.stringify(combObj) );
                             res.json( combObj );
                         });
                     }
                     else{
-                            console.log( "combObj 4: " + JSON.stringify(combObj) );
+                            //console.log( "combObj 4: " + JSON.stringify(combObj) );
                             res.json( combObj );
                         }
                 });
