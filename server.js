@@ -80,15 +80,20 @@ restService.post('/getincidents', function(req, res) {
         qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'&orderBy=createdTime:desc";
         
         Query( qString, req, res, function( result ){
-            res.json( result );
+            //res.json( result );
+            qString = result.items[0].id;
+            Query( qString, req, res, function( result ){
+                combObj["Unresolved"] = result;
+                qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Solved'&orderBy=createdTime:desc";
+                Query( qString, req, res, function( result ){
+                    qString = result.items[0].id;
+                    Query( qString, req, res, function( result ){
+                        combObj["Solved"] = result;
+                        res.json( combObj );
+                    });
+                });
+            });
             
-            
-//            combObj["Unresolved"] = result;
-//            qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Solved'&orderBy=createdTime:desc";
-//            Query( qString, req, res, function( result ){
-//                
-//                combObj["Solved"] = result;
-//            });
         });
 
         
