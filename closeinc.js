@@ -15,7 +15,7 @@ var options = { method: 'POST',
      'cache-control': 'no-cache',
      'x-http-method-override': 'PATCH',
      authorization: 'Basic cHBhdGthcjpsbnRMTlQxMjM0' },
-  body: '{\n"statusWithType": {\n       "status": {\n            "lookupName": "Unresolved"\n        }\n    }\n }' };
+  body: '{\n"statusWithType": {\n       "status": {\n            "lookupName": "Solved"\n        }\n    }\n }' };
 
     request(options, function(error, response, body) {
         if (error){
