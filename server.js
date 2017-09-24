@@ -41,7 +41,7 @@ restService.post('/', function(req, res) {
             queryValue = req.query.serialnum;
             console.log( "Serial_Number : " + Serial_Number );
         }
-        qString = "customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unsolved'";
+        qString = "customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'";
         
         Query( qString, req, res, function( result ){
             res.json( result );
