@@ -83,7 +83,7 @@ restService.post('/getincidents', function(req, res) {
             //res.json( result );
             qString = result.items[0].id;
             Query( qString, req, res, function( result ){
-                combObj["Unresolved"] = result;
+                //combObj["Unresolved"] = result;
                 qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Solved'&orderBy=createdTime:desc";
                 Query( qString, req, res, function( result ){
                     qString = result.items[0].id;
