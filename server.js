@@ -16,9 +16,15 @@ var PumpAssetId = "";
 var queryField = "", queryValue="";
 
 restService.post('/', function(req, res) {
+    Serial_Number = req.query.serialnum;
+    PumpAssetId = req.query.assetid;
     
     if( (Serial_Number == null || Serial_Number == "") && (PumpAssetId == null || PumpAssetId == "") ) {
-        //Error
+        res.json({
+            statusCode : 404,
+            statusText : "Bad Request",
+            message : "Required: Serial Number or Asset Id"
+        });
     }
     else{
         if( (Serial_Number == null && Serial_Number == "")  ) {
