@@ -39,7 +39,8 @@ restService.post('/', function(req, res) {
         }
 
         res.json({
-            queryField : queryValue
+            "Field" : queryField,
+            "Value" : queryValue
         });
     }
     
