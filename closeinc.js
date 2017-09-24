@@ -9,19 +9,19 @@ module.exports = function ( arrIds, req, res, callback){
     var request = require("request");
 
 var options = { method: 'POST',
-  url: 'https://ntinfotech--tst.custhelp.com/services/rest/connect/latest/incidents/125',
+  url: 'https://ntinfotech--tst.custhelp.com/services/rest/connect/latest/incidents/' + arrIds[0].id,
   headers: 
    { 'postman-token': '9db60d9f-9762-94fa-5a51-e36d77d114d1',
      'cache-control': 'no-cache',
      'x-http-method-override': 'PATCH',
      authorization: 'Basic cHBhdGthcjpsbnRMTlQxMjM0' },
-  body: '{\n"assignedTo": {\n        "account": null,\n        "staffGroup": {\n            "lookupName": "GB Staffs"\n        }\n    }\n }' };
+  body: '{\n"assignedTo": {\n        "account": null,\n        "staffGroup": {\n            "lookupName": "Admin"\n        }\n    }\n }' };
 
     request(options, function(error, response, body) {
         if (error) throw new Error(error);
 
         console.log( "status COde : " + response.statusCode);
-        console.log( "arrIds : " + arrIds[0].id);
+        
         if( response.statusCode < 200 || response.statusCode >=300 ){
               res.json({
                     statusCode : response.statusCode,
@@ -36,6 +36,7 @@ var options = { method: 'POST',
                     });
               }
               else{
+                  console.log( "arrIds : " + arrIds[0].id);
                   arrIds.splice(0,1);
                   CloseInc( arrIds, req, res, function( result ){
                       console.log("Closed");
