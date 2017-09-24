@@ -47,6 +47,7 @@ module.exports = function ( arrIds, req, res, callback){
                   CloseInc( arrIds, req, res, function( result ){
                       console.log("Closed");
                   });
+                  
               }
           }
       });
