@@ -22,20 +22,29 @@ var options = { method: 'POST',
 
         console.log( "status COde : " + response.statusCode);
         
-        if( response.statusCode < 200 || response.statusCode >=300 ){
-            res.json({
-                statusCode : response.statusCode,
-                message : "Failed"
-            });
-        }
-        else{
-            if( last == 1 ){
+        try{
+            if( response.statusCode < 200 || response.statusCode >=300 ){
                 res.json({
-                    statusCode : 200,
-                    message : "Successful"
+                    statusCode : response.statusCode,
+                    message : "Failed"
                 });
             }
+            else{
+                if( last == 1 ){
+                    res.json({
+                        statusCode : 200,
+                        message : "Successful"
+                    });
+                }
+            }
         }
+        catch( e ){
+            res.json({
+                statusCode : 400,
+                message : "Bad Request"
+            });
+        }
+            
         
         
 //        if( response.statusCode < 200 || response.statusCode >=300 ){
