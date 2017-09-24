@@ -52,31 +52,17 @@ restService.post('/closeincidents', function(req, res) {
             //res.json( result );
             var arrIds = result.items;
             
-            CloseInc( arrIds, req, res, function( result ){
-                console.log("Close Incidents");
-                
-//                var varStatus = result.statusCode;
-//                
-//                console.log( "status COde : " + result.statusCode);
-//                console.log("Status : " + result.status);
-//                console.log("varStatus : " + result.statusText);
-//                
-//                if( varStatus < 200 || varStatus >=300 ){
-//                    res.json({
-//                        statusCode : varStatus,
-//                        statusText : "Bad Request",
-//                        message : "Required: Serial Number or Asset Id"
-//                    });
-//                }
-//                else{
-//                    res.json({
-//                        statusCode : varStatus,
-//                        statusText : "Bad Request",
-//                        message : "Required: Serial Number or Asset Id"
-//                    });
-//                }
-                //Close inc was called and retur nvalue = result
-            });
+            if( arrIds.length > 0 ){
+                CloseInc( arrIds, req, res, function( result ){
+                    console.log("Close Incidents");
+                });
+            }
+            else{
+                res.json({
+                    statusCode : 300,
+                    message : "No records!"
+                });
+            }
             
         });
         

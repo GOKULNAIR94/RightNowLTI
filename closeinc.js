@@ -29,6 +29,7 @@ var options = { method: 'POST',
                 });
           }
           else{
+              arrIds.splice(0,1);
               if( arrIds.length == 0 ){
                   res.json({
                         statusCode : 200,
@@ -36,8 +37,7 @@ var options = { method: 'POST',
                     });
               }
               else{
-                  console.log( "arrIds : " + arrIds[0].id);
-                  arrIds.splice(0,1);
+                  console.log( "arrIds : " + arrIds[0].id);  
                   CloseInc( arrIds, req, res, function( result ){
                       console.log("Closed");
                   });
