@@ -28,7 +28,7 @@ module.exports = function ( arrIds, req, res, callback){
           //console.log( "resObj : " + JSON.stringify(resObj));
           
           console.log( "status COde : " + resp.statusCode);
-            console.log( "arrIds : " + arrIds);
+            console.log( "arrIds : " + arrIds[0].id);
           if( resp.statusCode < 200 || resp.statusCode >=300 ){
               res.json({
                     statusCode : resp.statusCode,
