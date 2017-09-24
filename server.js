@@ -18,7 +18,7 @@ var qString = "";
 var Serial_Number = "";
 var PumpAssetId = "";
 var queryField = "", queryValue="";
-var combObj = {};
+var combObj;
 
 restService.post('/closeincidents', function(req, res) {
     console.log( "closeincidents" );
