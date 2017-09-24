@@ -3,13 +3,13 @@ module.exports = function ( arrIds, req, res, callback){
     var CloseInc = require("./closeinc");
     
     var options = {
-      "method": "POST",
+      "method": "PATCH",
       "hostname": "ntinfotech--tst.custhelp.com",
       "port": null,
       "path": "/services/rest/connect/latest/incidents/" + arrIds[0].id,
       "headers": {
         "authorization": "Basic cHBhdGthcjpsbnRMTlQxMjM0",
-        "x-http-method-override": "PATCH",
+        //"x-http-method-override": "PATCH",
         "cache-control": "no-cache",
         "postman-token": "453a1486-b373-bf0b-4667-485bb7678b6d"
       }
