@@ -19,7 +19,7 @@ var Serial_Number = "";
 var PumpAssetId = "";
 var queryField = "", queryValue="";
 
-restService.post('/', function(req, res) {
+restService.post('/closeincidents', function(req, res) {
     Serial_Number = req.query.serialnum;
     PumpAssetId = req.query.assetid;
     
@@ -45,6 +45,48 @@ restService.post('/', function(req, res) {
         
         Query( qString, req, res, function( result ){
             res.json( result );
+        });
+
+        
+    }
+    
+});
+
+restService.post('/getincidents', function(req, res) {
+    var combObj;
+    Serial_Number = req.query.serialnum;
+    PumpAssetId = req.query.assetid;
+    
+    if( (Serial_Number == null || Serial_Number == "") && (PumpAssetId == null || PumpAssetId == "") ) {
+        res.json({
+            statusCode : 404,
+            statusText : "Bad Request",
+            message : "Required: Serial Number or Asset Id"
+        });
+    }
+    else{
+        if( (Serial_Number == null && Serial_Number == "")  ) {
+            queryField = "PumpAssetId";
+            queryValue = req.query.assetid;
+            console.log( "PumpAssetId : " + PumpAssetId );
+        }
+        else{
+            queryField = "Serial_Number";
+            queryValue = req.query.serialnum;
+            console.log( "Serial_Number : " + Serial_Number );
+        }
+        qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'&orderBy=createdTime:desc";
+        
+        Query( qString, req, res, function( result ){
+            res.json( result[0] );
+            
+            
+//            combObj["Unresolved"] = result;
+//            qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Solved'&orderBy=createdTime:desc";
+//            Query( qString, req, res, function( result ){
+//                
+//                combObj["Solved"] = result;
+//            });
         });
 
         
