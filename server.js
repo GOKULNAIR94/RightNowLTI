@@ -114,24 +114,47 @@ restService.post('/getincidents', function(req, res) {
             queryValue = req.query.serialnum;
             console.log( "Serial_Number : " + Serial_Number );
         }
-        qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'&orderBy=createdTime:desc";
         
+        qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'&orderBy=createdTime:desc";
         Query( qString, req, res, function( result ){
             //res.json( result );
-            qString = result.items[0].id;
-            Query( qString, req, res, function( result ){
-                combObj["Unresolved"] = result;
+            if( result.items.length > 0 ){
+                qString = result.items[0].id;
+                Query( qString, req, res, function( result ){
+                    combObj["Unresolved"] = result;
+                    
+                    qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Solved'&orderBy=createdTime:desc";
+                    Query( qString, req, res, function( result ){
+                        if( result.items.length > 0 ){
+                            qString = result.items[0].id;
+                            Query( qString, req, res, function( result ){
+                                combObj["Solved"] = result;
+                                res.json( combObj );
+                            });
+                        }
+                    });
+
+                });
+            }
+            else{
                 qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Solved'&orderBy=createdTime:desc";
                 Query( qString, req, res, function( result ){
-                    qString = result.items[0].id;
-                    Query( qString, req, res, function( result ){
-                        combObj["Solved"] = result;
-                        res.json( combObj );
-                    });
+                    if( result.items.length > 0 ){
+                        qString = result.items[0].id;
+                        Query( qString, req, res, function( result ){
+                            combObj["Solved"] = result;
+                            res.json( combObj );
+                        });
+                    }
                 });
-            });
+                
+            }
             
         });
+        
+        
+        
+        
 
         
     }
