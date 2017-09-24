@@ -132,6 +132,8 @@ restService.post('/getincidents', function(req, res) {
                                 res.json( combObj );
                             });
                         }
+                        else
+                            res.json( combObj );
                     });
 
                 });
@@ -146,17 +148,14 @@ restService.post('/getincidents', function(req, res) {
                             res.json( combObj );
                         });
                     }
+                    else
+                        res.json( combObj );
                 });
                 
             }
             
         });
-        
-        
-        
-        
 
-        
     }
     }
     catch( e ){
