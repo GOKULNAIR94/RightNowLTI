@@ -6,7 +6,7 @@ module.exports = function ( arrIds, req, res, callback){
       "method": "POST",
       "hostname": "ntinfotech--tst.custhelp.com",
       "port": null,
-      "path": "/services/rest/connect/latest/incidents/" + id,
+      "path": "/services/rest/connect/latest/incidents/" + arrIds[0].id,
       "headers": {
         "authorization": "Basic cHBhdGthcjpsbnRMTlQxMjM0",
         "x-http-method-override": "PATCH",
