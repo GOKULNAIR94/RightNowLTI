@@ -29,6 +29,8 @@ module.exports = function ( id, req, res, callback){
       });
     });
 
-    req.write( "{ 'statusWithType.status.lookupName' : 'Solved' }");
+    req.write( "{ 'assignedTo.staffGroup.id' : '100107' } " );
+
+    //req.write( "{ 'statusWithType.status.lookupName' : 'Solved' }");
     req.end();
 }

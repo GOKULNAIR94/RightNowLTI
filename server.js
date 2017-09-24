@@ -50,17 +50,39 @@ restService.post('/closeincidents', function(req, res) {
 
         Query( qString, req, res, function( result ){
             res.json( result );
+            var arrIds = result.items;
+            id = arrIds[0];
+            CloseInc( id, req, res, function( result ){
+                var varStatus = result.statusCode;
+                
+                console.log( "status COde : " + result.statusCode);
+                console.log("Status : " + result.status);
+                console.log("varStatus : " + result.statusText);
+                
+                if( varStatus < 200 || varStatus >=300 ){
+                    res.json({
+                        statusCode : varStatus,
+                        statusText : "Bad Request",
+                        message : "Required: Serial Number or Asset Id"
+                    });
+                }
+                else{
+                    res.json({
+                        statusCode : varStatus,
+                        statusText : "Bad Request",
+                        message : "Required: Serial Number or Asset Id"
+                    });
+                }
+                //Close inc was called and retur nvalue = result
+            });
+            
         });
         
-
-
     }
-//    CloseInc( id, req, res, function( result ){
-//        //Close inc was called and retur nvalue = result
-//    });
     
 });
 
+    
 
 
 restService.post('/getincidents', function(req, res) {
