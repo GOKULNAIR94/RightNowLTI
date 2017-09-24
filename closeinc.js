@@ -43,7 +43,7 @@ module.exports = function ( arrIds, req, res, callback){
                     });
               }
               else{
-                  arrIds.remove(0);
+                  arrIds.splice(0);
                   CloseInc( arrIds, req, res, function( result ){
                       console.log("Closed");
                   });
