@@ -27,6 +27,7 @@ module.exports = function ( qString, req, res, callback){
           if( resObj.items != null ){
               var rowCount = resObj.items.count;
               console.log( "rowCount : " + rowCount);
+              console.log( "resObj : " + JSON.stringify(resObj));
           }
           //console.log( "resObj : " + JSON.stringify(resObj));
           callback( resObj );
