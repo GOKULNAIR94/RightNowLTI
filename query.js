@@ -22,11 +22,11 @@ module.exports = function ( qString, req, res, callback){
       });
 
       res.on("end", function () {
-          console.log("Body : " + responseString);
+          //console.log("Body : " + responseString);
           resObj = JSON.parse(responseString);
           var rowCount = resObj.count;
           console.log( "rowCount : " + rowCount);
-          console.log( "resObj : " + JSON.stringify(resObj));
+          //console.log( "resObj : " + JSON.stringify(resObj));
           callback( resObj );
       });
     });
