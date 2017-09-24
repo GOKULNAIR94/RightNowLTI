@@ -26,8 +26,8 @@ module.exports = function ( qString, req, res, callback){
           resObj = JSON.parse(responseString);
           var rowCount = resObj.count;
           console.log( "rowCount : " + rowCount);
-          console.log( "resObj : " + JSON.stringify(resObj));
-          callback( resObj );
+          console.log( "resObj : " + JSON.stringify(resObj.items));
+          callback( resObj.items );
       });
     });
 
