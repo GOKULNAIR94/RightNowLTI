@@ -40,8 +40,8 @@ var options = { method: 'POST',
         }
         catch( e ){
             res.json({
-                statusCode : 400,
-                message : "Bad Request"
+                statusCode : 500,
+                message : "Internal Server Error!"
             });
         }
             
