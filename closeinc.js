@@ -27,23 +27,29 @@ module.exports = function ( arrIds, req, res, callback){
           resObj = JSON.parse(responseString);
           //console.log( "resObj : " + JSON.stringify(resObj));
           
-            console.log( "status COde : " + resp.statusCode);
-            console.log("Status : " + resp.status);
-            console.log("varStatus : " + resp.statusText);
-          
-          if( arrIds.length == 0 ){
+          console.log( "status COde : " + resp.statusCode);
+            
+          if( resp.statusCode < 200 || resp.statusCode >=300 ){
               res.json({
-                    statusCode : 200,
-                    statusText : "Success",
-                    message : "Update Successful"
+                    statusCode : resp.statusCode,
+                    message : "Failed"
                 });
           }
           else{
-              arrIds.remove(0);
-              CloseInc( arrIds, req, res, function( result ){
-                  console.log("Closed");
-              });
+              if( arrIds.length == 0 ){
+                  res.json({
+                        statusCode : 200,
+                        message : "Successful"
+                    });
+              }
+              else{
+                  arrIds.remove(0);
+                  CloseInc( arrIds, req, res, function( result ){
+                      console.log("Closed");
+                  });
+              }
           }
+          
           callback( resObj );
       });
     });
