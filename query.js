@@ -8,8 +8,7 @@ module.exports = function ( qString, req, resp, callback){
       "path": "/services/rest/connect/latest/incidents/" + qString, //customFields.CO.Serial_Number%3D'C355'%20AND%20statusWithType.status.lookupName%3D'Solved'
       "headers": {
         "authorization": "Basic cHBhdGthcjpsbnRMTlQxMjM0",
-        "cache-control": "no-cache",
-        "postman-token": "bb2621fe-1913-b93a-3ab3-03dcae7c592c"
+        "cache-control": "no-cache"
       }
     };
 

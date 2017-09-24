@@ -11,7 +11,7 @@ module.exports = function ( id, last, req, res, callback){
 var options = { method: 'POST',
   url: 'https://ntinfotech--tst.custhelp.com/services/rest/connect/latest/incidents/' + id,
   headers: 
-   { 'postman-token': '9db60d9f-9762-94fa-5a51-e36d77d114d1',
+   {
      'cache-control': 'no-cache',
      'x-http-method-override': 'PATCH',
      authorization: 'Basic cHBhdGthcjpsbnRMTlQxMjM0' },
