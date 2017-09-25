@@ -42,15 +42,15 @@ restService.post('/closeincidents', function(req, res) {
         });
     }
     else{
-        if( (Serial_Number == null && Serial_Number == "")  ) {
-            queryField = "RNAssetId.id";
-            queryValue = req.query.assetid;
-            console.log( "RNAssetId.id : " + RNAssetId );
-        }
-        else{
+        if( (Serial_Number != null && Serial_Number != "")  ) {
             queryField = "Serial_Number";
             queryValue = "'" + req.query.serialnum + "'";
             console.log( "Serial_Number : " + Serial_Number );
+        }
+        else{
+            queryField = "RNAssetId.id";
+            queryValue = req.query.assetid;
+            console.log( "RNAssetId.id : " + RNAssetId );
         }
         
         qString = "?q=customFields.CO." + queryField + "%3D" + queryValue + "%20AND%20statusWithType.status.lookupName%3D'Unresolved'";
@@ -116,15 +116,15 @@ restService.post('/getincidents', function(req, res) {
         });
     }
     else{
-        if( (Serial_Number == null && Serial_Number == "")  ) {
-            queryField = "RNAssetId.id";
-            queryValue = req.query.assetid;
-            console.log( "RNAssetId.id : " + RNAssetId );
-        }
-        else{
+        if( (Serial_Number != null && Serial_Number != "")  ) {
             queryField = "Serial_Number";
             queryValue = "'" + req.query.serialnum + "'";
             console.log( "Serial_Number : " + Serial_Number );
+        }
+        else{
+            queryField = "RNAssetId.id";
+            queryValue = req.query.assetid;
+            console.log( "RNAssetId.id : " + RNAssetId );
         }
 
         qString = "?q=customFields.CO." + queryField + "%3D" + queryValue + "%20AND%20statusWithType.status.lookupName%3D'Unresolved'&orderBy=createdTime:desc";
