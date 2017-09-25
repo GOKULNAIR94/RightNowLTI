@@ -17,14 +17,14 @@ var CloseInc = require("./closeinc");
 
 var qString = "";
 var Serial_Number = "";
-var PumpAssetId = "";
+var RNAssetId = "";
 var queryField = "", queryValue="";
 var combObj = {};
 
 restService.post('/closeincidents', function(req, res) {
     qString = "";
     Serial_Number = "";
-    PumpAssetId = "";
+    RNAssetId = "";
     queryField = "";
     queryValue="";
     combObj = {};
@@ -32,9 +32,9 @@ restService.post('/closeincidents', function(req, res) {
     try{
         console.log( "closeincidents" );
     Serial_Number = req.query.serialnum;
-    PumpAssetId = req.query.assetid;
+    RNAssetId = req.query.assetid;
     
-    if( (Serial_Number == null || Serial_Number == "") && (PumpAssetId == null || PumpAssetId == "") ) {
+    if( (Serial_Number == null || Serial_Number == "") && (RNAssetId == null || RNAssetId == "") ) {
         res.json({
             statusCode : 404,
             statusText : "Bad Request",
@@ -43,17 +43,17 @@ restService.post('/closeincidents', function(req, res) {
     }
     else{
         if( (Serial_Number == null && Serial_Number == "")  ) {
-            queryField = "PumpAssetId";
+            queryField = "RNAssetId.id";
             queryValue = req.query.assetid;
-            console.log( "PumpAssetId : " + PumpAssetId );
+            console.log( "RNAssetId.id : " + RNAssetId );
         }
         else{
             queryField = "Serial_Number";
-            queryValue = req.query.serialnum;
+            queryValue = "'" + req.query.serialnum + "'";
             console.log( "Serial_Number : " + Serial_Number );
         }
         
-        qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'";
+        qString = "?q=customFields.CO." + queryField + "%3D" + queryValue + "%20AND%20statusWithType.status.lookupName%3D'Unresolved'";
 
         Query( qString, req, res, function( result ){
             //res.json( result );
@@ -99,16 +99,16 @@ restService.post('/getincidents', function(req, res) {
     console.log( "getincidents" );
     qString = "";
     Serial_Number = "";
-    PumpAssetId = "";
+    RNAssetId = "";
     queryField = "";
     queryValue="";
     combObj = {};
     
     try{
     Serial_Number = req.query.serialnum;
-    PumpAssetId = req.query.assetid;
+    RNAssetId = req.query.assetid;
     
-    if( (Serial_Number == null || Serial_Number == "") && (PumpAssetId == null || PumpAssetId == "") ) {
+    if( (Serial_Number == null || Serial_Number == "") && (RNAssetId == null || RNAssetId == "") ) {
         res.json({
             statusCode : 404,
             statusText : "Bad Request",
@@ -117,17 +117,17 @@ restService.post('/getincidents', function(req, res) {
     }
     else{
         if( (Serial_Number == null && Serial_Number == "")  ) {
-            queryField = "PumpAssetId";
+            queryField = "RNAssetId.id";
             queryValue = req.query.assetid;
-            console.log( "PumpAssetId : " + PumpAssetId );
+            console.log( "RNAssetId.id : " + RNAssetId );
         }
         else{
             queryField = "Serial_Number";
-            queryValue = req.query.serialnum;
+            queryValue = "'" + req.query.serialnum + "'";
             console.log( "Serial_Number : " + Serial_Number );
         }
 
-        qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Unresolved'&orderBy=createdTime:desc";
+        qString = "?q=customFields.CO." + queryField + "%3D" + queryValue + "%20AND%20statusWithType.status.lookupName%3D'Unresolved'&orderBy=createdTime:desc";
         Query( qString, req, res, function( result ){
             //res.json( result );
             if( result.items.length > 0 ){
@@ -136,7 +136,7 @@ restService.post('/getincidents', function(req, res) {
                 Query( qString, req, res, function( result ){
                     combObj["Unresolved"] = result;
                     
-                    qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Solved'&orderBy=createdTime:desc";
+                    qString = "?q=customFields.CO." + queryField + "%3D" + queryValue + "%20AND%20statusWithType.status.lookupName%3D'Solved'&orderBy=createdTime:desc";
                     Query( qString, req, res, function( result ){
                         if( result.items.length > 0 ){
                             qString = result.items[0].id;
@@ -156,7 +156,7 @@ restService.post('/getincidents', function(req, res) {
                 });
             }
             else{
-                qString = "?q=customFields.CO." + queryField + "%3D'" + queryValue + "'%20AND%20statusWithType.status.lookupName%3D'Solved'&orderBy=createdTime:desc";
+                qString = "?q=customFields.CO." + queryField + "%3D" + queryValue + "%20AND%20statusWithType.status.lookupName%3D'Solved'&orderBy=createdTime:desc";
                 Query( qString, req, res, function( result ){
                     if( result.items.length > 0 ){
                         qString = result.items[0].id;
